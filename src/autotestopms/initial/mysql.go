@@ -16,6 +16,8 @@ func InitMysql() {
 	if nil != err {
 		mysql_port = 3306
 	}
+	//注册数据库驱动
+	orm.RegisterDriver("mysql", orm.DRMySQL)
 	//注册数据库
 	orm.RegisterDataBase("autotestopms", "mysql", fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8", mysql_user, mysql_password, mysql_url, mysql_port, mysql_database))
 

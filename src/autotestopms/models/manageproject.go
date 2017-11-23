@@ -29,4 +29,24 @@ func init(){
 	orm.RegisterModel(new(Projects))
 }
 
+//增加数据表的一行,测试一下数据库
+func AddProject(project Projects) error{
+	o := orm.NewOrm()
+	pro := new(Projects)
+
+	pro.Id = project.Id
+	pro.Projectname = project.Projectname
+	pro.Projectdirector = project.Projectdirector
+	pro.Projectmembers = project.Projectmembers
+	pro.Projectbriefing = project.Projectbriefing
+	pro.Projecttime = project.Projecttime
+	pro.Projectcomment = project.Projectcomment
+	pro.Projectstate = project.Projectstate
+	//这两个时间是插入数据库的时候需要修改的
+	pro.Createtime = time.Now()
+	pro.Edittime = time.Now()
+	_, err := o.Insert(pro)
+	return err
+}
+
 
